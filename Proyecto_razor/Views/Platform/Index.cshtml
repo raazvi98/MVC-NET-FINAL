@@ -31,7 +31,11 @@
             <a class="py-2 d-none d-md-inline-block" href="#">Features</a>
             <a class="py-2 d-none d-md-inline-block" href="#">Support</a>
             <a class="py-2 d-none d-md-inline-block" href="#">Pricing</a>
-            <a asp-controller="Platform" asp-action="Ver_carrito"><button type="button" class="btn btn-success" style="margin-left: 15px; margin-top:7px">Carrito  <img src="~/img/carrito.jpg" width="25px" height="20px" /></button></a>
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a asp-controller="Platform" asp-action="Ver_carrito"><button type="button" class="btn btn-success" style="margin-left: 15px; margin-top:7px">Carrito  <img src="~/img/carrito.jpg" width="25px" height="20px" /></button></a>
+            }
             <a asp-controller="Users" asp-action="Iniciar_Sesion"><button type="button" class="btn btn-primary" style="margin-top: 7px">Iniciar sesión</button></a>
             <div id="clockdate">
                 <div class="" style="position: absolute; margin-top: 2px; width: 100px; height: 50px;">

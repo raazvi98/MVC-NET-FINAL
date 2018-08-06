@@ -28,7 +28,7 @@ namespace Proyecto_razor.Controllers
         }
         //[HttpPost]
         [Route("/Check")]
-        [HttpGet("../Platform/Index")]
+        [HttpGet("../Index")]
         public IActionResult Check_login(string email, string password)
         {
             
@@ -43,6 +43,8 @@ namespace Proyecto_razor.Controllers
                 HttpContext.Session.SetString("usuario1", "1234");
                 HttpContext.Session.SetInt32("username", 22);
                 var active_user = HttpContext.User;
+                //var url = Url.Action("Index", "Platform");
+                //return Content(url);
                 return View("Index");
             }
             else

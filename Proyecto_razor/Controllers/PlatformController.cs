@@ -11,7 +11,6 @@ namespace Proyecto_razor.Controllers
     {
         [Route("")]
         [Route("~/Index")]
-        [Route("Index")]
         public IActionResult Index()
         {
             return View();
