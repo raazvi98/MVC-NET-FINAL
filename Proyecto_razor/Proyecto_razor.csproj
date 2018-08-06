@@ -23,4 +23,6 @@
     <PackageReference Include="MySql.Data" Version="8.0.12" />
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>
+
 </Project>

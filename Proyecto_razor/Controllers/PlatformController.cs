@@ -10,17 +10,16 @@ namespace Proyecto_razor.Controllers
     public class PlatformController : Controller
     {
         [Route("")]
-        [Route("Platform/Index")]
-        //[Route("~/")]
+        [Route("~/Index")]
+        [Route("Index")]
         public IActionResult Index()
         {
+            return View();
             //Producto producto = new Producto();
             //ViewBag.lista_productos = producto.getLista_productos();
-            return View();
         }
-        
-        [Route("~/Carrito")]
 
+        [Route("~/Carrito")]
         public IActionResult Ver_Carrito()
         {
             return View("Carrito");

@@ -26,21 +26,24 @@ namespace Proyecto_razor.Controllers
             // html formulario de registro
             return View("Nuevo_usuario");
         }
-        [HttpPost]
-        [Route("~/Check")]
+        //[HttpPost]
+        [Route("/Check")]
+        [HttpGet("../Platform/Index")]
         public IActionResult Check_login(string email, string password)
         {
+            
             // corregir cuando demos algo de base de datos
             DataContext dataConn= HttpContext.RequestServices.GetService(typeof(DataContext)) as DataContext;
+            // connectionstring a piñon
+            dataConn.ConnectionString = "Server=127.0.0.1;port=3306;Database=web_moviles_razor;user=danieles;password=1234;Ssl Mode=None";
+            bool connection_success=dataConn.check(email, password);
 
-            dataConn
-
-            if (password=="contra1" && email != "")
+            if (connection_success)
             {
                 HttpContext.Session.SetString("usuario1", "1234");
                 HttpContext.Session.SetInt32("username", 22);
                 var active_user = HttpContext.User;
-                return View("Index", active_user);
+                return View("Index");
             }
             else
             {
@@ -63,7 +66,7 @@ namespace Proyecto_razor.Controllers
                 //u.email = email;
                 //u.password = password;
 
-                DataContext dataContext = new DataContext("Server=localhost; port=3306; Database=web_moviles_razor; user=root; password=\"\";SslMode=none");
+                DataContext dataContext = new DataContext("Server=localhost; port=3306; Database=web_moviles_razor; user=root; password=\"\"; SslMode=none");
                 dataContext.add(u);
                 return View("Success");
             }

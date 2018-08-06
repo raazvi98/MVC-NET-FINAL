@@ -27,7 +27,7 @@ namespace Proyecto_razor.Models
             {
                 conn.Open();
                 bool success = false;
-                MySqlCommand cmd=new MySqlCommand("SELECT COUNT(*) FROM usuarios WHERE email="+email+" AND contrasena="+contrasena+"", conn);
+                MySqlCommand cmd=new MySqlCommand("SELECT COUNT(*) FROM usuarios WHERE email='"+email+"' AND contrasena='"+contrasena+"'", conn);
                 using(MySqlDataReader reader= cmd.ExecuteReader())
                 {
                     while (reader.Read())
@@ -92,8 +92,8 @@ namespace Proyecto_razor.Models
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand("INSERT INTO usuarios (nombre, apellidos, email, password) VALUES ('" +
-                             user.nombre + ", " + user.apellidos + ", " + user.email + ", " + user.password + "');", conn);
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO usuarios (nombre, apellidos, email, contrasena) VALUES ('" +
+                             user.nombre + "', '" + user.apellidos + "', '" + user.email + "', '" + user.password + "');", conn);
                 using (MySqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
