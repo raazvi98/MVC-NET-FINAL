@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Proyecto_razor.Helpers;
 using Proyecto_razor.Models;
 using Proyecto_razor.Controllers;
+using MySql.Data.MySqlClient;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -27,21 +28,26 @@ namespace Proyecto_razor.Controllers
         }
         [HttpPost]
         [Route("~/Check")]
-        public IActionResult Check_login(string nombre, string email, string password)
+        public IActionResult Check_login(string email, string password)
         {
             // corregir cuando demos algo de base de datos
-            if(password=="contra1" && email != "")
+            DataContext dataConn= HttpContext.RequestServices.GetService(typeof(DataContext)) as DataContext;
+
+            dataConn
+
+            if (password=="contra1" && email != "")
             {
-                HttpContext.Session.SetString("usuario1", "abc");
+                HttpContext.Session.SetString("usuario1", "1234");
                 HttpContext.Session.SetInt32("username", 22);
                 var active_user = HttpContext.User;
                 return View("Index", active_user);
             }
             else
             {
+                
                 string error = "ERROR: DATOS ERRONEOS";
                 ViewBag.error = error;
-                return RedirectToAction("Login",error);
+                return View("Login");
             }
         }
         [HttpPost]

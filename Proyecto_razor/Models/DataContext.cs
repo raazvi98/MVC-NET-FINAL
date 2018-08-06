@@ -21,6 +21,23 @@ namespace Proyecto_razor.Models
         {
             return new MySqlConnection(ConnectionString);
         }
+        public bool check(string email, string contrasena)
+        {
+            using(MySqlConnection conn= GetConnection())
+            {
+                conn.Open();
+                bool success = false;
+                MySqlCommand cmd=new MySqlCommand("SELECT COUNT(*) FROM usuarios WHERE email="+email+" AND contrasena="+contrasena+"", conn);
+                using(MySqlDataReader reader= cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        success = true;
+                    }
+                }
+                return success;
+            }
+        }
         public List<Producto> GetAllProducts()
         {
             List<Producto> lista_useros = new List<Producto>();
