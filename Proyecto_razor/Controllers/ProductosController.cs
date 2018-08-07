@@ -16,6 +16,7 @@ namespace Proyecto_razor.Controllers
             public IActionResult Productos()
             {
                 DataContext db = HttpContext.RequestServices.GetService(typeof(DataContext)) as DataContext;
+
                 ViewBag.products = db.GetAllProducts();
                 return View();
             }

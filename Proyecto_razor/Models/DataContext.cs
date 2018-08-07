@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
 using System;
@@ -40,27 +41,29 @@ namespace Proyecto_razor.Models
         }
         public List<Producto> GetAllProducts()
         {
-            List<Producto> lista_useros = new List<Producto>();
+            List<Producto> lista_productos = new List<Producto>();
+            
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand("SELECT* FROM productos ", conn);
+                MySqlCommand cmd = new MySqlCommand("SELECT id, nombre, precio, cantidad, foto FROM productos ", conn);
                 using (MySqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        lista_useros.Add(new Producto()
+                        lista_productos.Add(new Producto()
                         {
                             id = reader.GetInt32("id"),
                             nombre = reader.GetString("nombre"),
                             cantidad = reader.GetInt32("cantidad"),
                             precio = reader.GetDouble("precio"),
-                            Status = reader.GetBoolean("Status")
+                            //Status = reader.GetBoolean("Status"),
+                            foto = reader.GetString("foto")
                         });
                     }
                 }
             }
-            return lista_useros;
+            return lista_productos;
         }
         public List<Users> GetAllUsers()
         {

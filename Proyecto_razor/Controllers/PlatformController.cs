@@ -13,11 +13,11 @@ namespace Proyecto_razor.Controllers
         [Route("~/Index")]
         public IActionResult Index()
         {
+            DataContext db = HttpContext.RequestServices.GetService(typeof(DataContext)) as DataContext;
+            db.ConnectionString = "Server=127.0.0.1;port=3306;Database=web_moviles_razor;user=danieles;password=1234;Ssl Mode=None";
+            ViewData["lista_productos"] = db.GetAllProducts();
             return View();
-            //Producto producto = new Producto();
-            //ViewBag.lista_productos = producto.getLista_productos();
         }
-
         [Route("~/Carrito")]
         public IActionResult Ver_Carrito()
         {

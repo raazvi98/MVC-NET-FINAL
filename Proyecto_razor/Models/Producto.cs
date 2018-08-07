@@ -12,25 +12,32 @@ namespace Proyecto_razor.Models
         public string nombre { get; set; }
         public double cantidad { get; set; }
         public bool Status { get; set; }
-        private List<Producto> lista_productos;
+        public string foto { get; set; }
+        private List<Producto> lista_productos= new List<Producto>();
 
         public Producto()
         {
-            this.lista_productos = new List<Producto>()
-            {
-                new Producto
-                {
-                    precio=23.50,
-                    id=1,
-                    nombre="cargador extra XCELL"
-                },
-                new Producto
-                {
-                    precio=360,
-                    id=2,
-                    nombre="Xiaomi Mi A6"
-                }
-            };
+            //this.lista_productos = new List<Producto>();
+            //{
+            //    new Producto
+            //    {
+            //        precio=23.50,
+            //        id=1,
+            //        nombre="cargador extra XCELL"
+            //    },
+            //    new Producto
+            //    {
+            //        precio=360,
+            //        id=2,
+            //        nombre="Xiaomi Mi A6"
+            //    }
+            //}
+        }
+        public Producto(string nombre, double precio, int cantidad)
+        {
+            this.nombre = nombre;
+            this.precio = precio;
+            this.cantidad = cantidad;
         }
         public List<Producto> getLista_productos()
         {

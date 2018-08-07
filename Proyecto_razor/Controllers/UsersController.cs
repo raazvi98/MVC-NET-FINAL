@@ -31,11 +31,9 @@ namespace Proyecto_razor.Controllers
         [HttpGet("../Index")]
         public IActionResult Check_login(string email, string password)
         {
-            
-            // corregir cuando demos algo de base de datos
             DataContext dataConn= HttpContext.RequestServices.GetService(typeof(DataContext)) as DataContext;
             // connectionstring a piñon
-            dataConn.ConnectionString = "Server=127.0.0.1;port=3306;Database=web_moviles_razor;user=danieles;password=1234;Ssl Mode=None";
+            dataConn.ConnectionString = "Server=127.0.0.1;port=3306;Database=web_moviles_razor;user=root;password=;Ssl Mode=None";
             bool connection_success=dataConn.check(email, password);
 
             if (connection_success)
@@ -49,7 +47,6 @@ namespace Proyecto_razor.Controllers
             }
             else
             {
-                
                 string error = "ERROR: DATOS ERRONEOS";
                 ViewBag.error = error;
                 return View("Login");
